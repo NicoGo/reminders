@@ -1,5 +1,9 @@
 # Reminders & concepts
 
+## Quick access
+
+Fast API setup : https://github.com/blueswen/fastapi-observability
+
 ## UNIX commands
 
 ### Files search
