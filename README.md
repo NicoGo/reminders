@@ -194,6 +194,150 @@ echo "===== ✅ Done! Quick Ref of Bash Basics. ====="
 
 ## Python
 
+### Files
+
+```python
+with open("example.txt", "w") as f:
+    f.write("Hello\nWorld")
+
+with open("example.txt", "r") as f:
+    lines = f.readlines()
+    print("Read lines:", lines)
+```
+
+### Functools
+
+```python
+# 🛠️ FUNCTOOLS: Powerful utilities
+from functools import lru_cache, partial, reduce
+
+# Cache function calls
+@lru_cache(maxsize=128)
+def fib(n):
+    if n < 2:
+        return n
+    return fib(n-1) + fib(n-2)
+
+print("Fibonacci(10):", fib(10))
+
+# Partial functions
+def power(base, exp):
+    return base ** exp
+
+square = partial(power, exp=2)
+print("3 squared:", square(3))
+
+# Reduce
+nums = [1, 2, 3, 4]
+total = reduce(lambda x, y: x + y, nums)
+print("Sum using reduce:", total)
+```
+
+### Lambdas
+
+```python
+nums = [1, 2, 3]
+squares = list(map(lambda x: x**2, nums))
+print(squares)  # → [1, 4, 9]
+
+nums = [1, 2, 3]
+squares = list(map(lambda x: x**2, nums))
+print(squares)  # → [1, 4, 9]
+```
+
+### Itertools
+
+```python
+from itertools import groupby, islice
+
+# Grouping similar elements
+data = ['a', 'a', 'b', 'b', 'c']
+for key, group in groupby(data):
+    print(key, list(group))
+
+# Take first 3 elements of a generator
+from itertools import count
+for i in islice(count(100), 3):
+    print(i)
+```
+
+### Logger
+
+```python
+
+import logging
+
+logging.basicConfig(
+    level=logging.DEBUG,  # Use INFO or WARNING in prod
+    format="%(asctime)s [%(levelname)s] %(message)s"
+)
+
+logging.debug("This is a debug message")    # Dev only
+logging.info("This is an info message")     # Always useful
+logging.warning("This is a warning")        # Show in prod too
+
+```
+
+Use logger = ```python logging.getLogger(__name__)``` in modules and configure logging once in your main app.
+
+### Typing
+
+```python
+from typing import List, Dict, Optional
+
+def greet(name: str, age: Optional[int] = None) -> str:
+    if age:
+        return f"Hello {name}, age {age}"
+    return f"Hello {name}"
+
+def sum_list(nums: List[int]) -> int:
+    return sum(nums)
+```
+
+### Measuring time
+
+```python
+import time
+
+start = time.time()
+result = sum([x for x in range(1000000)])
+
+end = time.time()
+print(f"Execution time: {end - start:.4f} seconds")
+```
+
+
+### Multithreading
+
+```python
+from concurrent.futures import as_completed
+
+with ThreadPoolExecutor(max_workers=3) as executor:
+    futures = [executor.submit(task, i) for i in range(5)]
+    for future in as_completed(futures):
+        print(future.result())
+```
+
+### Multiprocessing
+
+```python
+from multiprocessing import Process, Queue, cpu_count
+
+def worker(q):
+    q.put("Done")
+
+if __name__ == "__main__":
+    q = Queue()
+    p = Process(target=worker, args=(q,))
+    p.start()
+    p.join()
+    print(q.get())
+    print("CPUs:", cpu_count())
+```
+
+
+
+
 ### Unit testing
 
 ## TDD rules
