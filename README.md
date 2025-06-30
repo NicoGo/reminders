@@ -393,21 +393,21 @@ if __name__ == "__main__":
 
 ## TDD rules
 
-** Red: Write a failing test **
+**Red: Write a failing test**
 Write a test case for a new feature or behavior that does not yet exist.
 
 Run tests and watch it fail. This confirms your test is valid and the feature is missing.
 
 Example: Test a function that doesn’t exist or a new behavior.
 
-** Green: Make the test pass **
+**Green: Make the test pass**
 Write the simplest possible code to make the failing test pass.
 
 Don’t worry about code quality yet — focus on correctness.
 
 Run tests and confirm the test suite is green (all passing).
 
-** Refactor: Improve the code **
+**Refactor: Improve the code**
 Now, clean up your code:
 
 * Remove duplication
