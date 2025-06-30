@@ -335,13 +335,85 @@ if __name__ == "__main__":
     print("CPUs:", cpu_count())
 ```
 
-
-
-
 ### Unit testing
+
+```python
+import unittest
+from my_module import add, divide
+
+class TestMyModule(unittest.TestCase):
+
+    def setUp(self):
+        print("\n[Setup] Preparing test environment...")
+        self.a = 10
+        self.b = 5
+
+    def tearDown(self):
+        print("[Teardown] Cleaning up after test...")
+
+    def test_add(self):
+        result = add(self.a, self.b)
+        self.assertEqual(result, 15)
+
+    def test_divide(self):
+        result = divide(self.a, self.b)
+        self.assertEqual(result, 2)
+
+    def test_divide_by_zero(self):
+        with self.assertRaises(ValueError):
+            divide(self.a, 0)
+
+if __name__ == "__main__":
+    unittest.main()
+```
+
+```python
+import unittest
+from unittest.mock import patch
+from my_module import process_data
+
+class TestMyModule(unittest.TestCase):
+
+    @patch('my_module.get_data')
+    def test_process_data(self, mock_get):
+        # Setup mock return value
+        mock_get.return_value = "mocked response"
+
+        result = process_data()
+        self.assertEqual(result, "MOCKED RESPONSE")
+        mock_get.assert_called_once()
+
+if __name__ == "__main__":
+    unittest.main()
+```
 
 ## TDD rules
 
-## Ansible
+** Red: Write a failing test **
+Write a test case for a new feature or behavior that does not yet exist.
+
+Run tests and watch it fail. This confirms your test is valid and the feature is missing.
+
+Example: Test a function that doesn’t exist or a new behavior.
+
+** Green: Make the test pass **
+Write the simplest possible code to make the failing test pass.
+
+Don’t worry about code quality yet — focus on correctness.
+
+Run tests and confirm the test suite is green (all passing).
+
+** Refactor: Improve the code **
+Now, clean up your code:
+
+* Remove duplication
+* Improve naming
+* Simplify logic
+
+Run tests often to ensure no regressions.
+
+Your codebase gets better without breaking functionality.
 
 ## Openshift
+
+
